@@ -3,6 +3,7 @@ package net.came20.tphome.command;
 import net.came20.tphome.request.RequestManager;
 import net.came20.tphome.request.TeleportReqeust;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,10 +26,10 @@ public class TpaCommand implements CommandExecutor {
                     TeleportReqeust reqeust = new TeleportReqeust(asker, asked);
                     RequestManager.registerAndSend(reqeust);
                 } else {
-                    asker.sendMessage("Could not find player '" + name + "'");
+                    asker.sendMessage(ChatColor.AQUA + "Could not find player '" + name + "'");
                 }
             } else {
-                commandSender.sendMessage("You must specify a player to teleport to!");
+                commandSender.sendMessage(ChatColor.RED + "You must specify a player to teleport to!");
             }
             return true;
         } else {

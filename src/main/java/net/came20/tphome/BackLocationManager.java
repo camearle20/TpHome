@@ -1,5 +1,6 @@
 package net.came20.tphome;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -19,11 +20,11 @@ public class BackLocationManager {
     public static void teleportPlayerBack(Player player) {
         Location backLocation = backLocations.getOrDefault(player, null); //Get their current back location
         if (backLocation != null) {
-            player.sendMessage("Teleporting you back");
+            player.sendMessage(ChatColor.AQUA + "Teleporting you back");
             setPlayerBackLocation(player); //Set their back location to their current location
             player.teleport(backLocation); //Teleport them to their back location
         } else {
-            player.sendMessage("You don't have a back location!");
+            player.sendMessage(ChatColor.RED + "You don't have a back location!");
         }
     }
 }

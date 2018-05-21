@@ -4,6 +4,7 @@ import net.came20.tphome.request.RequestManager;
 import net.came20.tphome.request.TeleportHereRequest;
 import net.came20.tphome.request.TeleportReqeust;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,10 +25,10 @@ public class TpaHereCommand implements CommandExecutor {
                     TeleportHereRequest reqeust = new TeleportHereRequest(asker, asked);
                     RequestManager.registerAndSend(reqeust);
                 } else {
-                    asker.sendMessage("Could not find player '" + name + "'");
+                    asker.sendMessage(ChatColor.AQUA + "Could not find player '" + name + "'");
                 }
             } else {
-                commandSender.sendMessage("You must specify a player to teleport to you");
+                commandSender.sendMessage(ChatColor.RED + "You must specify a player to teleport to you");
             }
             return true;
         } else {

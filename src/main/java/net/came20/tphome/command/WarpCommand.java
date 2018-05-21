@@ -2,6 +2,7 @@ package net.came20.tphome.command;
 
 import net.came20.tphome.BackLocationManager;
 import net.came20.tphome.WarpManager;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,14 +18,14 @@ public class WarpCommand implements CommandExecutor {
                 String name = args[0];
                 Location warpLocation = WarpManager.getWarpLocation(name);
                 if (warpLocation != null) {
-                    player.sendMessage("Teleporting you to warp '" + name + "'");
+                    player.sendMessage(ChatColor.AQUA + "Teleporting you to warp '" + name + "'");
                     BackLocationManager.setPlayerBackLocation(player);
                     player.teleport(warpLocation);
                 } else {
-                    player.sendMessage("Warp '" + name + "' not found!");
+                    player.sendMessage(ChatColor.RED + "Warp '" + name + "' not found!");
                 }
             } else {
-                player.sendMessage("You must specify a warp to go to!");
+                player.sendMessage(ChatColor.RED + "You must specify a warp to go to!");
             }
             return true;
         } else {

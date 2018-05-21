@@ -1,6 +1,7 @@
 package net.came20.tphome.command;
 
 import net.came20.tphome.HomeManager;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +14,7 @@ public class SetHomeCommand implements CommandExecutor {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             Location location = player.getLocation();
-            player.sendMessage("Your home location is set!");
+            player.sendMessage(ChatColor.AQUA + "Set your home location!");
             HomeManager.setHomeLocation(player, location);
             return true;
         } else {

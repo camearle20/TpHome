@@ -5,6 +5,7 @@ import net.came20.tphome.BackLocationManager;
 import net.came20.tphome.request.HomeRequest;
 import net.came20.tphome.request.RequestManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,11 +20,11 @@ public class HomeCommand implements CommandExecutor {
             if (args.length == 0) { //Self home
                 Location homeLocation = HomeManager.getHomeLocation(asker);
                 if (homeLocation != null) {
-                    asker.sendMessage("Teleporting you to your home.");
+                    asker.sendMessage(ChatColor.AQUA + "Teleporting you to your home.");
                     BackLocationManager.setPlayerBackLocation(asker);
                     asker.teleport(homeLocation);
                 } else {
-                    asker.sendMessage("You don't have a home set!");
+                    asker.sendMessage(ChatColor.RED + "You don't have a home set!");
                 }
             } else { //Visit home
                 String name = args[0];
@@ -36,10 +37,10 @@ public class HomeCommand implements CommandExecutor {
                         HomeRequest request = new HomeRequest(asker, asked);
                         RequestManager.registerAndSend(request);
                     } else {
-                        asker.sendMessage("Player '" + asked.getDisplayName() + "' doesn't have a home set!");
+                        asker.sendMessage(ChatColor.RED + "Player '" + asked.getDisplayName() + "' doesn't have a home set!");
                     }
                 } else {
-                    asker.sendMessage("Could not find player '" + name + "'");
+                    asker.sendMessage(ChatColor.RED + "Could not find player '" + name + "'");
                 }
             }
             return true;

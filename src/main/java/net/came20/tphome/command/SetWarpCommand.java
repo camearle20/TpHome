@@ -1,6 +1,7 @@
 package net.came20.tphome.command;
 
 import net.came20.tphome.WarpManager;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,12 +16,12 @@ public class SetWarpCommand implements CommandExecutor {
                 if (args.length > 0) {
                     String name = args[0];
                     WarpManager.setWarpLocation(name, player.getLocation());
-                    player.sendMessage("Warp '" + name + "' set to your location");
+                    player.sendMessage(ChatColor.AQUA + "Warp '" + name + "' set to your location");
                 } else {
-                    player.sendMessage("You must specify a name for your warp!");
+                    player.sendMessage(ChatColor.RED + "You must specify a name for your warp!");
                 }
             } else {
-                player.sendMessage("You do not have permission to set warps.");
+                player.sendMessage(ChatColor.RED + "You do not have permission to set warps.");
             }
             return true;
         } else {

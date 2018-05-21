@@ -3,6 +3,7 @@ package net.came20.tphome.request;
 import net.came20.tphome.BackLocationManager;
 import net.came20.tphome.Constants;
 import net.came20.tphome.HomeManager;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -13,19 +14,19 @@ public class HomeRequest extends Request {
 
     @Override
     public void send() {
-        asker.sendMessage("Request to visit " + asked.getDisplayName() + "'s home sent!");
+        asker.sendMessage(ChatColor.AQUA + "Request to visit " + asked.getDisplayName() + "'s home sent!");
         //asked.sendMessage(asker.getDisplayName() + " wants to visit your home!  Do '/accept' to accept, or '/decline' to decline.");
         asked.sendTitle(
-                "Teleport Request",
-                asker.getDisplayName() + " -> Your home | Do '/accept' or '/decline'.",
+                ChatColor.AQUA + "Teleport Request",
+                asker.getDisplayName() + " -> Your home | Do '" + ChatColor.GREEN + "/accept" + ChatColor.RESET + "' or '" + ChatColor.RED + "/decline" + ChatColor.RESET + "'.",
                 10, 70, 20
         );
     }
 
     @Override
     public void accept() {
-        asker.sendMessage(asked.getDisplayName() + " accepted your request.  Teleporting!");
-        asked.sendMessage("You accepted " + asker.getDisplayName() + "'s request");
+        asker.sendMessage(ChatColor.GREEN + asked.getDisplayName() + " accepted your request.  Teleporting!");
+        asked.sendMessage(ChatColor.AQUA + "You accepted " + asker.getDisplayName() + "'s request");
         Location location = HomeManager.getHomeLocation(asked);
         BackLocationManager.setPlayerBackLocation(asker);
         asker.teleport(location);
@@ -33,19 +34,19 @@ public class HomeRequest extends Request {
 
     @Override
     public void decline() {
-        asker.sendMessage(asked.getDisplayName() + " declined your request.");
-        asked.sendMessage("You declined " + asker.getDisplayName() + "'s request");
+        asker.sendMessage(ChatColor.RED + asked.getDisplayName() + " declined your request.");
+        asked.sendMessage(ChatColor.AQUA + "You declined " + asker.getDisplayName() + "'s request");
     }
 
     @Override
     public void cancel() {
-        asker.sendMessage("You cancelled your request to visit " + asked.getDisplayName() + "'s home");
-        asked.sendMessage(asker.getDisplayName() + " cancelled their request to visit your home");
+        asker.sendMessage(ChatColor.AQUA + "You cancelled your request to visit " + asked.getDisplayName() + "'s home");
+        asked.sendMessage(ChatColor.AQUA + asker.getDisplayName() + " cancelled their request to visit your home");
     }
 
     @Override
     public void timeout() {
-        asker.sendMessage("Your request to visit " + asked.getDisplayName() + "'s home timed out!");
-        asked.sendMessage(asker.getDisplayName() + "'s request to visit your home timed out!");
+        asker.sendMessage(ChatColor.AQUA + "Your request to visit " + asked.getDisplayName() + "'s home timed out!");
+        asked.sendMessage(ChatColor.AQUA + asker.getDisplayName() + "'s request to visit your home timed out!");
     }
 }

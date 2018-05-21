@@ -1,5 +1,6 @@
 package net.came20.tphome.request;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.LinkedList;
@@ -57,7 +58,7 @@ public class RequestManager {
             request.send();
             request.setTimeout(executor.schedule(new TimeoutTask(request), request.getTimeoutTime(), TimeUnit.SECONDS));
         } else {
-            request.asker.sendMessage("You have already made this request!");
+            request.asker.sendMessage(ChatColor.RED + "You have already made this request!");
         }
     }
 
@@ -68,7 +69,7 @@ public class RequestManager {
             removeAndCancel(request);
             request.accept();
         } else {
-            player.sendMessage("You don't have any requests.");
+            player.sendMessage(ChatColor.RED + "You don't have any requests.");
         }
     }
 
@@ -79,7 +80,7 @@ public class RequestManager {
             removeAndCancel(request);
             request.decline();
         } else {
-            player.sendMessage("You don't have any requests.");
+            player.sendMessage(ChatColor.RED + "You don't have any requests.");
         }
     }
 
@@ -90,7 +91,7 @@ public class RequestManager {
             removeAndCancel(request);
             request.cancel();
         } else {
-            player.sendMessage("You haven't made any requests.");
+            player.sendMessage(ChatColor.RED + "You haven't made any requests.");
         }
     }
 }
