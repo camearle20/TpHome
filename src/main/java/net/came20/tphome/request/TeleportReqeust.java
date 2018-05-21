@@ -2,6 +2,7 @@ package net.came20.tphome.request;
 
 import net.came20.tphome.BackLocationManager;
 import net.came20.tphome.Constants;
+import net.came20.tphome.NoTitleUserManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -13,12 +14,15 @@ public class TeleportReqeust extends Request {
     @Override
     public void send() {
         asker.sendMessage(ChatColor.AQUA + "Request to teleport to " + asked.getDisplayName() + " sent!");
-        //asked.sendMessage(asker.getDisplayName() + " wants to teleport to you!  Do '/accept' to accept, or '/decline' to decline.");
-        asked.sendTitle(
-                ChatColor.AQUA + "Teleport Request",
-                asker.getDisplayName() + " -> You | Do '" + ChatColor.GREEN + "/accept" + ChatColor.RESET + "' or '" + ChatColor.RED + "/decline" + ChatColor.RESET + "'.",
-                10, 70, 20
-        );
+        if (NoTitleUserManager.getUserWantsTitle(asked)) {
+            asked.sendTitle(
+                    ChatColor.AQUA + "Teleport Request",
+                    asker.getDisplayName() + " -> You | Do '" + ChatColor.GREEN + "/accept" + ChatColor.RESET + "' or '" + ChatColor.RED + "/decline" + ChatColor.RESET + "'.",
+                    10, 70, 20
+            );
+        } else {
+            asked.sendMessage(ChatColor.AQUA + asker.getDisplayName() + " wants to teleport to you!  Do '" + ChatColor.GREEN + "/accept" + ChatColor.RESET + ChatColor.AQUA + "' or '" + ChatColor.RED + "/decline" + ChatColor.RESET + ChatColor.AQUA + "'.");
+        }
     }
 
     @Override

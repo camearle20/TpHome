@@ -14,4 +14,5 @@ public class Commands {
     public static final String REMOVE_WARP = "removewarp";
     public static final String REMOVE_HOME = "removehome";
     public static final String LIST_WARPS = "listwarps";
+    public static final String TOGGLE_TITLES = "toggletitles";
 }

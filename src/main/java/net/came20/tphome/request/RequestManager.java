@@ -85,13 +85,15 @@ public class RequestManager {
     }
 
     synchronized public static void handleCancel(Player player) {
-        Queue<Request> requests = getRequestsByAsker(player);
-        Request request = requests.poll();
-        if (request != null) {
-            removeAndCancel(request);
-            request.cancel();
-        } else {
-            player.sendMessage(ChatColor.RED + "You haven't made any requests.");
+        if (player != null) {
+            Queue<Request> requests = getRequestsByAsker(player);
+            Request request = requests.poll();
+            if (request != null) {
+                removeAndCancel(request);
+                request.cancel();
+            } else {
+                player.sendMessage(ChatColor.RED + "You haven't made any requests.");
+            }
         }
     }
 }

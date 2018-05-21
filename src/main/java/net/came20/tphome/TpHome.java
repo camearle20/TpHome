@@ -38,10 +38,12 @@ public class TpHome extends JavaPlugin {
         getCommand(Commands.REMOVE_HOME).setExecutor(new RemoveHomeCommand());
         getCommand(Commands.REMOVE_WARP).setExecutor(new RemoveWarpCommand());
         getCommand(Commands.LIST_WARPS).setExecutor(new ListWarpsCommand());
+        getCommand(Commands.TOGGLE_TITLES).setExecutor(new ToggleTitleCommand());
 
         //Load files
         HomeManager.loadHomes(new File("plugins/homes.props"));
         WarpManager.loadWarps(new File("plugins/warps.props"));
+        NoTitleUserManager.loadUsers(new File("plugins/noTitles.props"));
     }
 
     @Override
@@ -49,6 +51,7 @@ public class TpHome extends JavaPlugin {
         //Save files
         HomeManager.saveHomes(new File("plugins/homes.props"));
         WarpManager.saveWarps(new File("plugins/warps.props"));
+        NoTitleUserManager.saveUsers(new File("plugins/noTitles.props"));
         plugin = null;
     }
 }
