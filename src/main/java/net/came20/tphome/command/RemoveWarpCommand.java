@@ -12,12 +12,16 @@ public class RemoveWarpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            if (args.length > 0) {
-                String name = args[0];
-                WarpManager.removeWarp(name);
-                player.sendMessage(ChatColor.AQUA + "The warp '" + name + "' was removed");
+            if (player.isOp()) {
+                if (args.length > 0) {
+                    String name = args[0];
+                    WarpManager.removeWarp(name);
+                    player.sendMessage(ChatColor.AQUA + "The warp '" + name + "' was removed");
+                } else {
+                    player.sendMessage(ChatColor.RED + "You must specify a warp to remove!");
+                }
             } else {
-                player.sendMessage(ChatColor.RED + "You must specify a warp to remove!");
+                player.sendMessage(ChatColor.RED + "You do not have permission to remove warps.");
             }
             return true;
         } else {
